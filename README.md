@@ -1,33 +1,99 @@
-# Express.js on Vercel
+# Astronomy
 
-Simple Express.js + Vercel example that uses Vercel Postgres to add and display users in a table.
+An open source application built using the latest features in Astro v4 with shadcn/ui.
 
-## How to Use
+![blog](public/og.jpg)
 
-BE sure to create a Vercel Postgres database and add you environment variables to your `.env` file. You can find an example of the `.env` file in the `.env.example` file.
+> **Warning**
+> This app is a work in progress. I'm building this in public. You can follow the progress on Twitter [@miickasmt](https://twitter.com/miickasmt).
+> See the roadmap below.
 
-You can choose from one of the following two methods to use this repository:
+## About this project
 
-### One-Click Deploy
+This project as an experiment to see how a modern app (with features like authentication, subscriptions, API routes, Markdown, Content Collections ...etc) would work in Astro v4 and shadcn/ui.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+> **Note**
+> I would like to inform you that for the time being, my example app built with Astro.js is still under development and **cannot yet be considered a starter template**.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/express&project-name=express&repository-name=express)
+## Project Structure
 
-### Clone and Deploy
-
-```bash
-git clone https://github.com/vercel/examples/tree/main/solutions/express
+```
+├── public/
+│   └── fonts/
+├── src/
+│   ├── components/
+│   ├── config/
+│   ├── content/
+│   ├── hooks/
+│   ├── icons/
+│   ├── layouts/
+│   ├── lib/
+│   ├── pages/
+│   ├── styles/
+│   └── types/
+├── astro.config.mjs
+├── README.md
+├── package.json
+├── tailwind.config.cjs
+└── tsconfig.json
 ```
 
-Install the Vercel CLI:
+## Features
 
-```bash
-npm i -g vercel
+- Config files
+- Views Transitions
+- Routing and Layouts
+- React components & hooks
+- UI Components built using **shadcn/ui**
+- Documentation and blog using **MDX** and **Content Collections**
+- Styled using **Tailwind CSS**
+- Validations using **Zod**
+- Written in **TypeScript**
+- 100/100 Lighthouse performance
+- Minimal styling (make it your own!)
+- RSS Feed support
+
+_Not implemented yet :_
+
+- Sitemap support
+- Data Fetching
+- SEO component
+- API Endpoint
+- Subscriptions using **Lemon Squeezy** ?
+
+## Roadmap
+
+- [x] ~Dark mode~
+- [x] ~Add Markdown & MDX support~
+- [x] ~Sheet mobile nav~
+- [x] ~Build **changelog pages**~
+- [ ] Build **blog with Asto DB** (work on it)
+- [ ] Build **ecommerce pages** (work on it)
+- [ ] Build **dashboard pages**
+- [ ] Build **animes pages** (graphql)
+- [ ] Add search support for blog
+- [ ] Add OG image for blog and others
+- [ ] Add SEO component & metadata
+- [ ] Subscriptions using Stripe
+
+## Running Locally
+
+1. Install dependencies using pnpm:
+
+```sh
+pnpm install
 ```
 
-Then run the app at the root of the repository:
+2. Start the development server:
 
-```bash
-vercel dev
+```sh
+pnpm run dev
 ```
+
+## Credit
+
+This theme is based off of the example app [Taxonomy](https://tx.shadcn.com/) of shadcn.
+
+## License
+
+Licensed under the [MIT license](https://github.com/mickasmt/astro-nomy/blob/main/LICENSE.md).

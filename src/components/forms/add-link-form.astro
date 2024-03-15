@@ -1,0 +1,29 @@
+---
+import { db, Redirects } from 'astro:db';
+
+if (Astro.request.method === 'POST') {
+  // parse form data
+  const formData = await Astro.request.formData();
+  const slug  = formData.get('name');
+  const to = formData.get('url');
+  if (typeof slug === 'string' && typeof to === 'string') {
+    // insert form data into the Comment table
+    await db.insert(Redirects).values({ to: to, slug: slug });
+  }
+}
+
+// render the new list of comments on each request
+const comments = await db.select().from(Redirects);
+---
+
+<form method="POST" style="display: grid">
+  <label for="name">Name</label>
+  <input id="name" name="name" />
+
+  <label for="url">URL</label>
+  <textarea id="url" name="url"></textarea>
+
+  <button type="submit">Submit</button>
+</form>
+
+<!--render `comments`-->
