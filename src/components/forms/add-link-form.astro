@@ -1,29 +1,50 @@
 ---
-import { db, Redirects } from 'astro:db';
+import { db, Redirects } from "astro:db";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 
-if (Astro.request.method === 'POST') {
-  // parse form data
-  const formData = await Astro.request.formData();
-  const slug  = formData.get('name');
-  const to = formData.get('url');
-  if (typeof slug === 'string' && typeof to === 'string') {
-    // insert form data into the Comment table
-    await db.insert(Redirects).values({ to: to, slug: slug });
-  }
+if (Astro.request.method === "POST") {
+	// parse form data
+	const formData = await Astro.request.formData();
+	const slug = formData.get("name");
+	const to = formData.get("url");
+	console.log(slug, to);
+	if (typeof slug === "string" && typeof to === "string") {
+		// insert form data into the Comment table
+		await db
+			.insert(Redirects)
+			.values({ to: to, slug: slug })
+			.then(() => {
+				console.log("Data inserted successfully");
+			});
+	}
 }
-
-// render the new list of comments on each request
-const comments = await db.select().from(Redirects);
 ---
 
-<form method="POST" style="display: grid">
-  <label for="name">Name</label>
-  <input id="name" name="name" />
-
-  <label for="url">URL</label>
-  <textarea id="url" name="url"></textarea>
-
-  <button type="submit">Submit</button>
+<form
+	method="POST"
+	class="flex justify-center items-center gap-2 flex-col w-full lg:p-8 p-6 border-primary/50 hover:border-primary/80 transition-all duration-300 ease-in-out  border max-w-lg rounded-lg"
+>
+	<Label className="lg:text-xl text-lg font-bold" htmlFor="name">
+		Name / Slug
+	</Label>
+	<p class="text-balance text-sm text-muted-foreground max-w-xs">
+		The name of the link which will be used as the slug. <br /> For example,
+		if you enter "My Link", the link will be accessible at
+		<code>visitmyl.ink/my-link</code>.
+	</p>
+	<Input id="name" name="name" />
+	<Label className="lg:text-xl text-lg font-bold" htmlFor="url">
+		URL / Link
+		</Label>
+	<p class="text-balance text-sm text-muted-foreground max-w-xs">
+		The URL of the link.<br /> For example, if you enter
+		<code>https://my-link.com</code>, the link will be accessible at
+		<code>visitmyl.ink/my-link</code>.
+	</p>
+	<Input id="url" name="url" />
+	<Button type="submit" className="w-full mt-4 lg:text-xl text-lg font-bold">Submit</Button>
 </form>
 
 <!--render `comments`-->

@@ -17,7 +17,7 @@ const { title, description, bodyClass } = Astro.props;
   <head>
     <BaseHead title={title} description={description} />
   </head>
-  <body class={cn("flex flex-col min-h-screen", bodyClass)}>
+  <body class={cn("flex flex-col min-h-screen transition-all duration-300 ease-in-out", bodyClass)}>
     <slot />
     <TailwindIndicator />
   </body>
