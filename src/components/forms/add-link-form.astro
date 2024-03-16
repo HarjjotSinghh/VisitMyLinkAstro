@@ -10,7 +10,7 @@ if (Astro.request.method === "POST") {
 	const slug = formData.get("name");
 	const to = formData.get("url");
 	console.log(slug, to);
-	if (typeof slug === "string" && typeof to === "string") {
+	if (typeof slug === "string" && typeof to === "string" && slug.length > 0 && to.length > 0 ) {
 		// insert form data into the Comment table
 		await db
 			.insert(Redirects)
@@ -20,6 +20,7 @@ if (Astro.request.method === "POST") {
 			});
 	}
 }
+const redirects = await db.select().from(Redirects).all();
 ---
 
 <form
@@ -44,7 +45,12 @@ if (Astro.request.method === "POST") {
 		<code>visitmyl.ink/my-link</code>.
 	</p>
 	<Input id="url" name="url" />
-	<Button type="submit" className="w-full mt-4 lg:text-xl text-lg font-bold">Submit</Button>
+	<Button type="submit" className="w-full mt-4 lg:text-xl text-lg font-bold">Add Link</Button>
+	{redirects.map((redirect) => (
+		<p class="text-sm text-muted-foreground">
+			{redirect.slug} -> {redirect.to}
+		</p>
+	))}
 </form>
 
 <!--render `comments`-->
